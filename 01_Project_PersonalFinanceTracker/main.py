@@ -7,6 +7,7 @@
 import pandas as pd
 import csv
 from datetime import datetime # helps to handle dates
+from data_entry_user import get_amount,get_category,get_date,get_description
 
 class CSV : 
     CSV_FILE = "finance_data.csv"
@@ -37,6 +38,18 @@ class CSV :
             csv_writer = csv.DictWriter(csv_file,fieldnames=data.Columns)
             csv_writer.writerow(new_entry)
         print("Entry Added Successfully")
+        
+        @classmethod
+        def get_transaction_range(data,start_dt,end_dt):
+            df = pd.read_csv(data.CSV_FILE)
             
-CSV.initialize_csv()
-CSV.add_entry("01-01-2026",70000.00,"Income","Salary")
+            
+def add_data():
+    CSV.initialize_csv()
+    date = get_date("Enter date of transaction , or just enter for today's data : ",allow_default=True)
+    amnt = get_amount()
+    cat = get_category()
+    desc = get_description()
+    CSV.add_entry(date,amnt,cat,desc)
+    
+add_data()
