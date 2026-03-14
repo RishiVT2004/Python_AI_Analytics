@@ -45,12 +45,12 @@ def get_date(date_prompt,allow_default=False) :
         # strptime converts the input string → datetime object
         # If the string doesn't match the expected format,
         # Python raises a ValueError.
-        valid_date = datetime.strptime(date_string,date_format)
-    except :
-        print("invalid date format!!! , ender in dd-mm-yyyy form")
-        return get_date(date_prompt,allow_default)
-    
-
+        valid_date = datetime.strptime(date_string, date_format)
+        # MUST RETURN THE STRING, NOT THE DATETIME OBJECT!
+        return date_string
+    except ValueError:
+        print("Invalid date format!!! Please enter in dd-mm-yyyy format.")
+        return get_date(date_prompt, allow_default)
 
 # ---------------------------------------------------------------
 # get_amount()

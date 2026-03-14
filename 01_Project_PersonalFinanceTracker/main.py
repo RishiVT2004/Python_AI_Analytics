@@ -6,8 +6,10 @@
 
 import pandas as pd
 import csv
+import matplotlib.pyplot as plt
 from datetime import datetime # helps to handle dates easily (converting strings to date objects)
 from data_entry_user import get_amount, get_category, get_date, get_description
+
 
 # We use a Class to group all functions and variables related to our CSV file together.
 class CSV: 
@@ -99,12 +101,39 @@ def add_data():
     # Send all those collected inputs to our add_entry function
     CSV.add_entry(date, amnt, cat, desc)
 
+def plot_graph_transaction(df): 
+    # FIX 1: inplace must be the boolean True, not the string "True"
+    df.set_index("date", inplace=True) 
+    
+    # creates a new df based on Category = income/expense . D -> daily frequency
+    inc_df = df[df["category"] == "I"].resample("D").sum().reindex(df.index, fill_value=0) 
+    exp_df = df[df["category"] == "E"].resample("D").sum().reindex(df.index, fill_value=0)
+
+    plt.figure(figsize=(10,5))
+    plt.plot(inc_df.index, inc_df["amount"], label="Income", color="g")
+    
+    # FIX 2: Corrected variables from 'inc_df' to 'exp_df' and label to "Expense"
+    plt.plot(exp_df.index, exp_df["amount"], label="Expense", color="r")
+    
+    plt.xlabel("Date")
+    plt.ylabel("Amount")
+    plt.title("Income and Expenses over Time")
+    plt.legend()
+    plt.grid(True)
+    
+    # FIX 3: You need plt.show() to actually render the graph on your screen!
+    plt.show()
+
+
 def main(): 
     """The main menu loop of the program. Keeps running until the user decides to exit."""
     # 'while True:' creates an infinite loop. It keeps asking the user what they want to do.
     while True: 
         print("\n1. Add a new Transaction\n2. Find Transaction Summary Between a date range\n3. Exit")
-        choice = int(input("Enter your choice (1-3) : "))
+        try : 
+            choice = int(input("Enter your choice (1-3) : "))
+        except ValueError: 
+            break
         
         # Branching logic based on user input
         if choice == 1: 
@@ -113,7 +142,10 @@ def main():
         elif choice == 2: 
             start_date = get_date("Enter Start Date (dd-mm-yyyy) : ")
             end_date = get_date("Enter End Date (dd-mm-yyyy) : ")
-            df = CSV.get_transaction(start_date, end_date)
+            df = CSV.get_transaction(start_date, end_date) # for plotting 
+            if input("Do yo want to see a graph (Y/N)").upper() == "Y" : 
+                plot_graph_transaction(df)
+
             
         elif choice == 3: 
             print("Exiting the Program...")
@@ -128,9 +160,3 @@ def main():
 # If you import this file into another project, __name__ will be "main", and it WON'T run main() automatically.
 if __name__ == "__main__": 
     main()
-
-'''    
-# Old testing code, commented out because our main() loop handles this dynamically now!
-CSV.get_transaction("01-01-2026","10-01-2026")
-add_data()
-'''

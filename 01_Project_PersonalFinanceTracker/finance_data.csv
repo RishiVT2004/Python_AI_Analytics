@@ -1,5 +1,26 @@
 date,amount,category,description
-01-01-2026,70000.0,I,Salary
+01-01-2026,50000.0,I,Salary
+01-01-2026,18000.0,E,House Rent
 02-01-2026,10000.0,E,Train Tickets
+03-01-2026,2500.0,E,Maid Salary
+04-01-2026,999.0,E,Broadband Bill
 06-01-2026,100.0,E,Blinkit
-
+07-01-2026,5000.0,E,Car EMI
+08-01-2026,1000.0,E,Movies and Dinner
+09-01-2026,500.0,E,Mobile Recharge
+10-01-2026,1500.0,E,Electricity Bill
+12-01-2026,200.0,E,Coffee Shop
+14-01-2026,3000.0,E,Groceries
+15-01-2026,5000.0,I,Freelance Project
+16-01-2026,800.0,E,Zomato Order
+18-01-2026,1200.0,E,Gym Membership
+20-01-2026,300.0,E,Pharmacy
+21-01-2026,2500.0,E,Car Fuel
+22-01-2026,1500.0,E,Health Insurance Premium
+24-01-2026,400.0,E,Netflix Subscription
+25-01-2026,150.0,E,Blinkit
+26-01-2026,600.0,E,Lunch with friends
+28-01-2026,2000.0,E,Shopping - Clothes
+29-01-2026,350.0,E,Uber Ride
+30-01-2026,450.0,E,Water Bill
+31-01-2026,1200.0,E,Weekend Outing
