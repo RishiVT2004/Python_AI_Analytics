@@ -1,4 +1,5 @@
 date,amount,category,description
-01-01-2026,70000.0,Income,Salary
-06-03-2026,100.0,E,Blinkit
-,50000.0,I,Salary
+01-01-2026,70000.0,I,Salary
+02-01-2026,10000.0,E,Train Tickets
+06-01-2026,100.0,E,Blinkit
+
